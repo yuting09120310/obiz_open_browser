@@ -18,9 +18,6 @@ namespace obiz_open_browser
 {
     public partial class Form1 : Form
     {
-        browser f;
-        string pid;
-
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +27,7 @@ namespace obiz_open_browser
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //如果有輸入url
             if(textBox1.Text.Length > 0)
             {
                 //建立新執行續
