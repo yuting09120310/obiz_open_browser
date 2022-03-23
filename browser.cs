@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using CefSettings = CefSharp.WinForms.CefSettings;
 using ChromiumWebBrowser = CefSharp.WinForms.ChromiumWebBrowser;
 using System.IO;
+using System.Diagnostics;
 
 namespace obiz_open_browser
 {
@@ -25,6 +26,14 @@ namespace obiz_open_browser
         }
 
         public ChromiumWebBrowser browsers;
+
+        public void get_process()
+        {
+            Form1 parentForm = (Form1)this.Owner;
+            Process currentProcess = Process.GetCurrentProcess();
+            parentForm.ShowDialog();
+        }
+        
 
         public void InitBrowser(string url)
         {

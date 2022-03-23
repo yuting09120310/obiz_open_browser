@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,17 +18,24 @@ namespace obiz_open_browser
 {
     public partial class Form1 : Form
     {
+        browser f;
+        string pid;
+
         public Form1()
         {
             InitializeComponent();
         }
 
+        
+
         private void button1_Click(object sender, EventArgs e)
         {
             if(textBox1.Text.Length > 0)
             {
-                browser f = new browser(textBox1.Text);
-                f.Show();
+                //建立新執行續
+                System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(ThreadProc));
+
+                t.Start();
             }
             else
             {
@@ -35,9 +43,11 @@ namespace obiz_open_browser
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
 
+        public void ThreadProc()
+        {
+            Application.Run(new browser(textBox1.Text));
         }
+
     }
 }
