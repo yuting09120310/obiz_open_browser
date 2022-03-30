@@ -12,12 +12,16 @@ using CefSettings = CefSharp.WinForms.CefSettings;
 using ChromiumWebBrowser = CefSharp.WinForms.ChromiumWebBrowser;
 using System.IO;
 using System.Diagnostics;
+using obiz_load_data;
+
 
 namespace obiz_open_browser
 {
     public partial class browser : Form
     {
         public string text;
+        Msg_log msg_Log = new Msg_log();
+        string AppName = "obiz_open_browser_browser";
 
         public browser(string Url)
         {
@@ -29,9 +33,15 @@ namespace obiz_open_browser
 
         public void get_process()
         {
-            Form1 parentForm = (Form1)this.Owner;
-            Process currentProcess = Process.GetCurrentProcess();
-            parentForm.ShowDialog();
+            try
+            {
+                Form1 parentForm = (Form1)this.Owner;
+                Process currentProcess = Process.GetCurrentProcess();
+                parentForm.ShowDialog();
+            }catch (Exception ex)
+            {
+                msg_Log.save_log(AppName, ex);
+            }
         }
         
 
@@ -43,7 +53,7 @@ namespace obiz_open_browser
             }
             catch(Exception ex)
             {
-                File.AppendAllText(@"C:\Users\alex\Desktop\Homework\error.txt", DateTime.Now.ToString() + "\r\n" + ex.Message + "\r\n");
+                msg_Log.save_log(AppName, ex);
             }
             finally
             {
@@ -55,8 +65,14 @@ namespace obiz_open_browser
 
         private void browser_FormClosed(object sender, FormClosedEventArgs e)
         {
-            browsers.Dispose();
-            browsers = null;
+            try
+            {
+                browsers.Dispose();
+                browsers = null;
+            }catch(Exception ex)
+            {
+                msg_Log.save_log(AppName, ex);
+            }
         }
     }
 }
