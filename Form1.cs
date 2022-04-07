@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CefSettings = CefSharp.WinForms.CefSettings;
 using ChromiumWebBrowser = CefSharp.WinForms.ChromiumWebBrowser;
-using obiz_load_data;
+using Alex_Component;
 
 namespace obiz_open_browser
 {

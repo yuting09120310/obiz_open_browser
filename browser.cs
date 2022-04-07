@@ -12,7 +12,7 @@ using CefSettings = CefSharp.WinForms.CefSettings;
 using ChromiumWebBrowser = CefSharp.WinForms.ChromiumWebBrowser;
 using System.IO;
 using System.Diagnostics;
-using obiz_load_data;
+using Alex_Component;
 
 
 namespace obiz_open_browser
