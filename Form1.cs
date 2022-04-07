@@ -26,15 +26,15 @@ namespace obiz_open_browser
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnOpen_Click(object sender, EventArgs e)
         {
             try
             {
                 //如果有輸入url
-                if (textBox1.Text.Length > 0)
+                if (txtUrl.Text.Length > 0)
                 {
                     //建立新執行續
-                    System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(ThreadProc));
+                    System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(thread_proc));
 
                     t.Start();
                 }
@@ -49,16 +49,17 @@ namespace obiz_open_browser
         }
 
 
-        public void ThreadProc()
+        public void thread_proc()
         {
             try
             {
-                Application.Run(new browser(textBox1.Text));
+                Application.Run(new browser(txtUrl.Text));
             }catch(Exception ex)
             {
                 msg_Log.save_log(AppName,ex);
             }
         }
+
 
     }
 }

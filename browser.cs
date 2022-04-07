@@ -22,30 +22,15 @@ namespace obiz_open_browser
         public string text;
         Msg_log msg_Log = new Msg_log();
         string AppName = "obiz_open_browser_browser";
+        public ChromiumWebBrowser browsers;
 
         public browser(string Url)
         {
             InitializeComponent();
-            InitBrowser(Url);
+            init_browser(Url);
         }
 
-        public ChromiumWebBrowser browsers;
-
-        public void get_process()
-        {
-            try
-            {
-                Form1 parentForm = (Form1)this.Owner;
-                Process currentProcess = Process.GetCurrentProcess();
-                parentForm.ShowDialog();
-            }catch (Exception ex)
-            {
-                msg_Log.save_log(AppName, ex);
-            }
-        }
-        
-
-        public void InitBrowser(string url)
+        public void init_browser(string Url)
         {
             try
             {
@@ -57,7 +42,7 @@ namespace obiz_open_browser
             }
             finally
             {
-                browsers = new ChromiumWebBrowser(url);
+                browsers = new ChromiumWebBrowser(Url);
                 this.Controls.Add(browsers);
                 browsers.Dock = DockStyle.Fill;
             }
